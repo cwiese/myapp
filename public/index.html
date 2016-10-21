@@ -1,0 +1,43 @@
+  <html>
+   <body>
+
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+ 
+    <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+
+    <script type="text/javascript">
+     
+      $(document).ready(function(){
+     
+        $("body").html("jQuery is working");  
+
+        $.ajax({
+            url: 'http://localhost:1337/nodcrscpit1:8085/glossary/api/v1/auth/token',
+            data: {
+                username: "infa_dq_bg",
+                password: "40r0kU7wMF"
+            },
+            type: 'GET',
+            dataType: 'json',
+            crossDomain: true,
+            contentType: 'application/json',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function(data) {
+                console.log(data);
+                console.log('it worked');
+                $("<p>"+data.authToken+"</p>").appendTo(document.body); 
+            },
+            error: function(data) {
+                console.log(data);
+                console.log('it failed');
+            }
+        })
+     
+      });
+     
+    </script>
+
+   </body>
+ </html>
